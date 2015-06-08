@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<title>Perf Graph</title>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	</head>
+	<body>
+		<div id='chart_div'></div>
+		<script>
+			'use strict';
+			var google = google || {},
+				graph_data = [],
+				time = 0,
+				chart,
+				data;
+
+			setInterval(function () {
+				var xhr = new XMLHttpRequest();
+				xhr.open('GET', 'http://localhost:8181/data');
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState === 4) {
+						graph_data = JSON.parse(xhr.responseText);
+						data.addRows(graph_data.map(function (a) {
+							return [time++, (a[1] - a[0]) / 1000];
+						}));
+						chart.draw(data);
+					}
+				};
+				xhr.send();
+			}, 500);
+
+			function drawChart () {
+				data = new google.visualization.DataTable();
+
+				data.addColumn('number', 'Time');
+				data.addColumn('number', 'Duration');
+
+				var options = {
+					title: 'Query',
+					width: 400,
+					height: 300
+				};
+
+				chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+				chart.draw(data, options);
+			}
+
+			google.load('visualization', '1.0', {'packages':['corechart']});
+			google.setOnLoadCallback(drawChart);
+		</script>
+	</body>
+</html>

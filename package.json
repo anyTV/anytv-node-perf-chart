@@ -1,0 +1,24 @@
+{
+  "name": "anytv-node-perf-chart",
+  "version": "1.0.0",
+  "description": "Module for performance charts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anyTV/anytv-node-perf-chart"
+  },
+  "keywords": [
+    "performance",
+    "chart",
+    "graph"
+  ],
+  "author": "anyTV",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anyTV/anytv-node-perf-chart/issues"
+  },
+  "homepage": "https://github.com/anyTV/anytv-node-perf-chart"
+}
