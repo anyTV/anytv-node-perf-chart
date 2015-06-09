@@ -9,9 +9,9 @@ module.exports = function (options) {
 	var default_index = __dirname + '/index.html',
 		data = [];
 
-	index = fs.readFileSync(options.index || default_index, 'utf8');
-
 	options = options || {};
+
+	index = fs.readFileSync(options.index || default_index, 'utf8');
 
 	http.createServer(function (req, res) {
 			if (req.url === '/data') {
